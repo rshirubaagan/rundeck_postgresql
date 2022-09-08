@@ -1,0 +1,18 @@
+version: '3'
+services:
+  rundeck:
+    image: rundeck/rundeck:4.6.0
+    environment:
+      RUNDECK_DATABASE_DRIVER: org.postgresql.Driver
+      RUNDECK_DATABASE_USERNAME: rundeck
+      RUNDECK_DATABASE_PASSWORD: rundeck
+      RUNDECK_DATABASE_URL: jdbc:postgresql://postgres/rundeck?autoReconnect=true&useSSL=false
+    ports:
+      - 4440:4440
+  postgres:
+      image: postgres:10
+      expose:
+        - 3306
+      environment:
+        - POSTGRES_USER=rundeck
+        - POSTGRES_PASSWORD=rundeck
